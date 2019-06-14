@@ -1,0 +1,74 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Success</title>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400">
+    <link rel="stylesheet" href="{% static "login/css/bootstrap.min.css" %}">
+    <link rel="stylesheet" href="{% static "login/css/materialize.min.css" %}">
+    <link rel="stylesheet" href="{% static "login/css/tooplate.css" %}">
+    <style>
+        .outer {
+          display: table;
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 100%;
+          width: 100%;
+        }
+
+        .middle {
+          display: table-cell;
+          vertical-align: middle;
+        }
+
+        .inner {
+          margin-left: auto;
+          margin-right: auto;
+          width: 400px;
+          /*whatever width you want*/
+        }
+    </style>
+</head>
+<body id="login">
+<div class="container">
+        <div class="row tm-register-row tm-mb-35">
+            <div class="col-12">
+<!--<div class="outer">-->
+  <!--<div class="middle">-->
+    <!--<div class="inner">-->
+      <h3 class="mt-0 text-white font-weight-light"style="align">Your Account Created Succesfully..will redirect in <span id="countdown">10</span> seconds</h3>
+    </div>
+  </div>
+</div>
+
+</body>
+<script>
+    <!--setTimeout(function() {-->
+              <!--window.location.href = "/";-->
+              <!--document.getElementById("countdown").innerHTML = ;-->
+            <!--}, 5000);-->
+
+    var seconds = 4;
+
+    function countdown() {
+        seconds = seconds - 1;
+        if (seconds < 0) {
+            // Chnage your redirection link here
+            window.location = "/";
+        } else {
+            // Update remaining seconds
+            document.getElementById("countdown").innerHTML = seconds;
+            // Count down using javascript
+            window.setTimeout("countdown()", 1000);
+        }
+    }
+
+    // Run countdown function
+    countdown();
+</script>
+</html>

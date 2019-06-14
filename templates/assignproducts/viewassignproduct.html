@@ -1,0 +1,67 @@
+{% extends "adminview.html" %}
+{% block admincontent %}
+
+    <div class="row tm-mt-big">
+            <div class="col-xl">
+                <div class="bg-white tm-block">
+              <h4>Products</h4>
+              <div class="row">
+                <div class="col-12">
+                  <div class="table-responsive">
+                    <table id="order-listing" class="table">
+                      <thead>
+                        <tr>
+                            <th>Product ID</th>
+                            <th>Product</th>
+                            <th>Employee ID</th>
+                            <th>Employee Name</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {% for detail in assignproduct %}
+                        <tr>
+                            <td>{{ detail.product_id.id }}</td>
+                            <td>{{ detail.product_id.pname }}</td>
+                            <td>{{ detail.employee_id.id}}</td>
+                            <td>{{ detail.employee_id.ename}}</td>
+
+
+
+                            <form method="post">{% csrf_token %}
+                                <td><input value="{{ detail.id }}" name="qrgenerate" hidden>
+                                   <button type="submit" class="btn btn-primary">Generate QRcode</button></td>
+                            </form>
+                            <!--<form method="post" action="/editemployee/">{% csrf_token %}-->
+                                <!--<td><input value="{{ detail.id }}" name="edtbtn" hidden>-->
+                                   <!--<button class="btn btn-primary" type="submit" class="mybutton">Edit</button></td>-->
+                            <!--</form>-->
+
+                            <form method="post">{% csrf_token %}
+                                <td><input value="{{ detail.id }}" name="dltbtn" hidden>
+                                    <button class="btn btn-primary" type="submit" class="mybutton">Delete</button></td>
+                            </form>
+                        </tr>
+                        {% endfor %}
+
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+    <footer class="row tm-mt-big">
+            <div class="col-12 font-weight-light">
+                <p class="d-inline-block tm-bg-black text-white py-2 px-4">
+                    Copyright &copy; 2018 Admin Dashboard . Created by
+                    <a rel="nofollow" href="https://www.tooplate.com" class="text-white tm-footer-link">Tooplate</a>
+                </p>
+            </div>
+    </footer>
+
+{% endblock admincontent %}

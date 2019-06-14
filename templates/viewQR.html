@@ -1,0 +1,51 @@
+
+{% extends "adminview.html" %}
+{% load staticfiles %}
+{% block headcontent %}
+
+{% endblock headcontent %}
+{% block admincontent %}
+<div class="row tm-mt-big">
+    <div class="col-12">
+        <div class="bg-white tm-block">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="tm-block-title">View Product</h2>
+                </div>
+            </div>
+                <div class="row mt-4">
+                    <label class="col-2 col-form-label">Product ID</label>
+                    <input value="{{ assign.product_id.id }}" type="text" class="form-control col-6" disabled>
+                </div>
+                <div class="row">
+                    <label class="col-2 col-form-label">Product Name</label>
+                    <input value="{{ assign.product_id.pname }}" type="text" class="form-control col-6" disabled>
+                </div>
+                <div class="row">
+                    <label class="col-2 col-form-label">Description</label>
+                    <input value="{{ assign.product_id.pdescription }}" type="text" class="form-control col-6" disabled>
+                </div>
+                <div class="row">
+                    <label class="col-2 col-form-label">Category</label>
+                    <input value="{{ assign.product_id.pcategory }}" type="text" class="form-control col-6" disabled>
+                </div>
+                <!--<div class="row">-->
+                    <!--<label class="col-2 col-form-label">Units</label>-->
+                    <!--<input value="{{ product.punits }}" type="text" class="form-control col-6" disabled>-->
+                <!--</div>-->
+                <div class="row">
+                    <label class="col-2 col-form-label">Employee ID</label>
+                    <input value="{{ assign.employee_id.id }}" type="text" class="form-control col-6" disabled>
+                </div>
+                <div class="row">
+                    <label class="col-2 col-form-label">Employee Name</label>
+                    <input value="{{ assign.employee_id.ename }}" type="text" class="form-control col-6" disabled>
+                </div>
+                <div class="row">
+                    <label class="col-2 col-form-label">Employee Age</label>
+                    <input value="{{ assign.employee_id.eage }}" type="text" class="form-control col-6" disabled>
+                </div>
+        </div>
+    </div>
+</div>
+{% endblock admincontent %}

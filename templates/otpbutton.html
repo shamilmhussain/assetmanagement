@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <style>
+        .box{
+            width:400px;
+            height:100px;
+        }
+
+
+        button{
+            margin-top: 30px;
+
+          margin-right: 80px;
+          margin-left: 130px;
+          }
+    </style>
+</head>
+<body>
+    <div class="container">
+      <div class="card bg-dark" style="width: 443px;">
+        <div class="card-body">
+            <h2>Please Verify your email {{name}}</h2>
+            <div class="box">
+                 <a href="{{ link}}"><button class="btn btn-primary">Click to Reset</button></a>
+            </div>
+            <h4>Please Click the above button</h4>
+        </div>
+      </div>
+    </div>
+
+</body>
+</html>

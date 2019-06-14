@@ -1,0 +1,105 @@
+{% extends "adminview.html" %}
+{% block headcontent %}
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    <script>
+
+        var searchApp = angular.module('searchApp',[]);
+    searchApp.controller('SearchController',function ($scope,$http,$log,$filter) {
+
+        var playerSearchResult = $http.get('https://api.myjson.com/bins/kqmoa');
+
+        playerSearchResult.then(function (playerSearchResult, status, headers, config) {
+            $scope.datas = playerSearchResult.data;
+            console.log("searching..");
+        });
+    });
+    </script>
+{% endblock headcontent %}
+{% block admincontent %}
+<section ng-app="searchApp" ng-controller="SearchController" >
+<div class="row tm-mt-big">
+    <div class="col-xl">
+
+        <div class="bg-white tm-block">
+
+
+              <h4>Products</h4>
+
+              <div class="row">
+
+                <div class="col-12">
+
+                  <div class="table-responsive">
+
+                        <input type="search" ng-model="search"  id="search" placeholder="Search" class="form-control"/>
+                        <table id="order-listing" class="table table-striped table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Employee ID</th>
+                                    <th>Name</th>
+                                    <th>Age</th>
+                                    <!--<th></th>-->
+                                    <!--<th></th>-->
+                                </tr>
+                            </thead>
+
+                                <!--{% for detail in employee %}-->
+                                <tr ng-repeat="data in datas|filter:search">
+                                    {% verbatim %}
+
+                                    <td>{{ data.id }}</td>
+                                    <td>{{ data.ename }}</td>
+                                    <td>{{ data.eage}}</td>
+
+                                    {% endverbatim %}
+
+
+                                    <!--<form method="post" action="/studentview/">{% csrf_token %}-->
+                                        <!--<td><input value="{{ detail.id }}" name="viewbtn" hidden>-->
+                                           <!--<button type="submit" class="mybutton">View</button></td>-->
+                                    <!--</form>-->
+                                    <!--<form method="post" action="/editemployee/">{% csrf_token %}-->
+                                        <!--<td><input value="{{ data.id }}" name="edtbtn" hidden>-->
+                                           <!--<button class="btn btn-primary" type="submit" class="mybutton">Edit</button></td>-->
+                                    <!--</form>-->
+
+                                    <!--<form method="post">{% csrf_token %}-->
+                                        <!--<td><input value="{{ data.id }}" name="dltbtn" hidden>-->
+                                            <!--<button class="btn btn-primary" type="submit" class="mybutton">Delete</button></td>-->
+                                    <!--</form>-->
+
+
+                                </tr>
+                            <!--{% endfor %}-->
+
+
+
+                        </table>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+</div>
+
+    <footer class="row tm-mt-big">
+            <div class="col-12 font-weight-light">
+                <p class="d-inline-block tm-bg-black text-white py-2 px-4">
+                    Copyright &copy; 2018 Admin Dashboard . Created by
+                    <a rel="nofollow" href="https://www.tooplate.com" class="text-white tm-footer-link">Tooplate</a>
+                </p>
+            </div>
+    </footer>
+</section>
+{% endblock admincontent %}
+{% block script %}
+{% endblock script %}

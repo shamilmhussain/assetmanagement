@@ -1,0 +1,48 @@
+{% extends "adminview.html" %}
+{% block admincontent %}
+    <div class="row tm-mt-big">
+            <div class="col-xl-12 col-lg-10 col-md-12 col-sm-12">
+                <div class="bg-white tm-block">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2 class="tm-block-title d-inline-block">Assign Products</h2>
+                        </div>
+                    </div>
+                    <div class="row mt-4 tm-edit-product-row">
+                        <div class="col-xl-7 col-lg-7 col-md-12">
+                            <form method="post" class="tm-edit-product-form">{% csrf_token %}
+                                <h2 style="color:{{ color }}; font-size:20px;">{{ msg }}</h2>
+                                <div class="input-group mb-3">
+
+                                    <label for="name" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Employee ID</label>
+                                    <input id="name" name="eid"  type="number" style="height:105%" class="form-control validate col-xl-9 col-lg-8 col-md-8 col-sm-7" required>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <label for="name" class="col-xl-4 col-lg-4 col-md-4 col-sm-5 col-form-label">Product
+                                        ID
+                                    </label>
+                                    <input name="pid" type="number" style="height:105%" class="form-control validate col-xl-9 col-lg-8 col-md-8 col-sm-7" required>
+                                </div>
+                                <div class="input-group mb-3">
+                                    <div class="ml-auto col-xl-8 col-lg-8 col-md-8 col-sm-7 pl-0">
+                                        <button type="submit" class="btn btn-primary">Add
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+    <footer class="row tm-mt-big">
+            <div class="col-12 font-weight-light">
+                <p class="d-inline-block tm-bg-black text-white py-2 px-4">
+                    Copyright &copy; 2018 Admin Dashboard . Created by
+                    <a rel="nofollow" href="https://www.tooplate.com" class="text-white tm-footer-link">Tooplate</a>
+                </p>
+            </div>
+    </footer>
+
+{% endblock admincontent %}

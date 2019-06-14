@@ -1,0 +1,135 @@
+{% extends "adminview.html" %}
+{% block headcontent %}
+    <meta charset="UTF-8">
+    <title>Searching</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    <script>
+
+        var searchApp = angular.module('searchApp',[]);
+    searchApp.controller('SearchController',function ($scope,$http,$log,$filter) {
+
+        var playerSearchResult = $http.get('http://127.0.0.1:8000/employeesjson/');
+
+        playerSearchResult.then(function (playerSearchResult, status, headers, config) {
+            $scope.datas = playerSearchResult.data;
+            console.log("searching..");
+        });
+    });
+    </script>
+
+<!-- jQuery library -->
+
+{% endblock headcontent %}
+{% block admincontent %}
+<section ng-app="searchApp" ng-controller="SearchController" >
+<div class="row tm-mt-big">
+    <div class="col-xl">
+        <div class="bg-white tm-block">
+              <h4>Products</h4>
+              <div class="row">
+                <div class="col-12">
+                  <div class="table-responsive">
+            <input type="search" ng-model="search"  id="search" placeholder="search Job Details" class="form-control" />
+            <table class="table table-striped table-hover">
+                <thead>
+                <tr>
+                    <th>Employee Id</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                </tr>
+                </thead>
+                <tr ng-repeat="data in datas|filter:search">
+                    {% verbatim %}
+                    <td >{{ data.id }}</td>
+                    <td >{{ data.ename }}</td>
+                    <td>{{ data.eage }}</td>
+
+                    <td>
+                        <a href="/editemployee/{{ data.id }}/">
+                            <button class="btn btn-primary" type="button">Edit</button></a>
+                    </td>
+
+                    <td>
+                        <a href="/delemployee/{{ data.id }}/">
+                            <button class="btn btn-primary" type="button" class="mybutton">Delete</button></a>
+                    </td>
+
+                    {% endverbatim %}
+                </tr>
+            </table>
+                      </div>
+                </div>
+              </div>
+            </div>
+        </div>
+
+    <!--<ul class="list-group" id="result"></ul>-->
+    </div>
+    <footer class="row tm-mt-big">
+            <div class="col-12 font-weight-light">
+                <p class="d-inline-block tm-bg-black text-white py-2 px-4">
+                    Copyright &copy; 2018 Admin Dashboard . Created by
+                    <a rel="nofollow" href="https://www.tooplate.com" class="text-white tm-footer-link">Tooplate</a>
+                </p>
+            </div>
+    </footer>
+</section>
+{% endblock admincontent %}
+
+
+
+
+
+    {#$('#search').keydown(function () {#}
+    {#    $.getJSON('http://127.0.0.1:8000/api/jobss/',function (data) {#}
+    {#        console.log(data);#}
+    {#        var search = $('#search').val();#}
+    {#        var regex = new RegExp(search,'i');#}
+    {#        var output;#}
+    {#        $.each(data,function (key,val) {#}
+                {#if(val.id.search(regex)!=-1 || val.title.search(regex)!=-1) {#}
+    {##}
+    {#                output += "<tr>";#}
+    {#                output += "<td id='" + key + "'>" + val.id + "</td>";#}
+    {#                output += "<td id='" + key + "'>" + val.title + "</td>";#}
+    {#                output += "</tr>";#}
+    {##}
+    {##}
+    {#        });#}
+    {#        $('tbody').html(output);#}
+    {##}
+    {#    });#}
+
+{#    $(document).ready(function () {#}
+{#        $('#search').keyup(function () {#}
+{#            $('#result').html('');#}
+{#            var searchField =$('#search').val();#}
+{#            var exoression = new RegExp(searchField,"i");#}
+{#            $.getJSON('http://127.0.0.1:8000/api/jobss/',function(data){#}
+{#                console.log(data);#}
+{#                $.each(data,function (key,val) {#}
+{#                    if((val.title.search(expression)  !=-1 )|| (val.description.search(expression) != -1))#}
+{##}
+{#                    {#}
+{#                        a=$('#result').append('<li class ="list-group-item'>+value.title+'</li>');#}
+{#                        alert(a);#}
+{##}
+{#                    }#}
+{##}
+{##}
+{#                });#}
+{#            });#}
+{##}
+{#        });#}
+{##}
+{#    $('#result').on('click', 'li', function() {#}
+{#  var click_text = $(this).text().split('|');#}
+{#  $('#search').val($.trim(click_text[0]));#}
+{#  $("#result").html('');#}
+{# });#}
